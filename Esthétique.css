@@ -1,0 +1,31 @@
+body, html { 
+    margin: 0; padding: 0; width: 100%; height: 100%; 
+    overflow: hidden; 
+    /* Fond couleur Océan */
+    background-color: #0f172a; 
+}
+canvas { 
+    display: block; 
+    touch-action: none; 
+}
+* { user-select: none; }
+
+#uiPanel {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    backdrop-filter: blur(4px);
+}
+#uiPanel.hidden-panel {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.95);
+}
+
+/* Griser les boutons technologiques si on n'a pas assez d'or */
+.disabled-tech {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}

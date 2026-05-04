@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Pax Front - World Conquest</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Bouton d'ouverture du menu -->
+    <button id="openMenuBtn" class="hidden absolute top-4 left-4 z-50 bg-gray-800 hover:bg-gray-700 text-white font-bold p-3 rounded-lg shadow-lg border border-gray-600 transition">
+        📜 Afficher l'Empire
+    </button>
+
+    <!-- Fenêtre de commandement (Déplaçable) -->
+    <div id="uiPanel" class="z-40 bg-gray-900 bg-opacity-95 text-white rounded-lg shadow-2xl pointer-events-auto w-80 flex flex-col border border-gray-600">
+        <div id="uiHeader" class="bg-gray-800 p-3 rounded-t-lg cursor-move flex justify-between items-center border-b border-gray-600">
+            <span class="text-xs font-bold text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                <span class="text-lg">≡</span> Commandement
+            </span>
+            <button id="closeMenuBtn" class="text-gray-400 hover:text-white hover:bg-red-600 font-bold w-8 h-8 rounded transition">✕</button>
+        </div>
+
+        <div class="p-4 overflow-y-auto max-h-[80vh]">
+            <h1 class="text-2xl font-bold text-blue-400 mb-1">Pax Front : Global</h1>
+            
+            <!-- Tableau de bord Économique (Nouveau !) -->
+            <div class="bg-yellow-900 bg-opacity-40 p-3 rounded border border-yellow-700 mt-3 mb-4">
+                <h2 class="text-sm font-bold text-yellow-500 mb-1">Trésor Impérial</h2>
+                <div class="flex justify-between items-center">
+                    <span class="text-2xl font-bold" id="goldDisplay">0 💰</span>
+                    <span class="text-xs text-yellow-300" id="goldIncomeDisplay">+0/sec</span>
+                </div>
+            </div>
+
+            <!-- Arbre des Technologies (Nouveau !) -->
+            <h2 class="text-sm font-bold text-gray-400 mb-2 uppercase border-b border-gray-700 pb-1">Technologies</h2>
+            <div class="space-y-2 mb-4">
+                <button id="btnTechAttack" class="w-full bg-gray-800 hover:bg-gray-700 border border-gray-600 text-left p-2 rounded transition flex justify-between items-center">
+                    <div>
+                        <span class="block text-sm font-bold text-red-400">Armement Avancé</span>
+                        <span class="block text-xs text-gray-400">Attaque +20% (Niv <span id="lvlAttack">0</span>)</span>
+                    </div>
+                    <span class="text-yellow-400 font-bold text-sm" id="costAttack">50 💰</span>
+                </button>
+
+                <button id="btnTechDefense" class="w-full bg-gray-800 hover:bg-gray-700 border border-gray-600 text-left p-2 rounded transition flex justify-between items-center">
+                    <div>
+                        <span class="block text-sm font-bold text-green-400">Fortifications</span>
+                        <span class="block text-xs text-gray-400">Défense +25% (Niv <span id="lvlDefense">0</span>)</span>
+                    </div>
+                    <span class="text-yellow-400 font-bold text-sm" id="costDefense">50 💰</span>
+                </button>
+            </div>
+            
+            <button id="restartBtn" class="mt-4 w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded transition">
+                Recommencer la campagne
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal de Fin de Partie -->
+    <div id="endGameModal" class="hidden fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
+        <div class="bg-gray-800 p-8 rounded-xl shadow-2xl text-center border-4" id="endGameBox">
+            <h2 id="endGameTitle" class="text-4xl font-bold mb-4 uppercase"></h2>
+            <button id="modalRestartBtn" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-lg text-xl">Rejouer</button>
+        </div>
+    </div>
+
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- Importation des scripts dans l'ordre logique -->
+    <script src="mapData.js"></script>
+    <script src="paxMechanics.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
