@@ -1,0 +1,28 @@
+body, html { 
+    margin: 0; padding: 0; width: 100%; height: 100%; 
+    overflow: hidden; 
+    background-color: #080c16; /* Océan profond */
+    font-family: sans-serif;
+}
+canvas { 
+    display: block; 
+    /* Désactive le menu contextuel du clic droit pour l'utiliser comme déplacement de carte */
+    touch-action: none; 
+}
+* { user-select: none; }
+
+/* Fenêtres déplaçables */
+.draggable-window {
+    position: absolute;
+    backdrop-filter: blur(5px);
+    transition: opacity 0.3s ease;
+}
+.hidden-ui {
+    opacity: 0;
+    pointer-events: none;
+    display: none;
+}
+.drag-handle:active { background-color: #374151; }
+
+.tech-btn:hover:not(.disabled-tech) { background-color: #374151; cursor: pointer; }
+.disabled-tech { opacity: 0.4; pointer-events: none; filter: grayscale(100%); }
